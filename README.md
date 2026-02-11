@@ -2,7 +2,9 @@
 
 A portable Python tool to check OpenAI Codex rate limit status.
 
-Reads `~/.codex/sessions/` for quota data and `~/.codex/accounts/*.json` when using `--all`.
+Reads `~/.codex/sessions/` for quota data.
+
+⚠️ With `--all --yes`, it temporarily overwrites `~/.codex/auth.json` to switch accounts (restored afterwards). Uses the `codex` CLI for `--fresh` / `--all`.
 
 ## ClawHub
 

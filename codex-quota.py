@@ -190,7 +190,11 @@ def switch_account(name):
     return True
 
 def update_all_accounts(want_json=False):
-    """Update quota for all accounts and store in /tmp."""
+    """Update quota for all accounts and store in /tmp.
+
+    ⚠️ This temporarily overwrites ~/.codex/auth.json to switch accounts.
+    We restore the original auth.json bytes at the end (best-effort).
+    """
     import time
     
     accounts = list_accounts()
@@ -200,8 +204,10 @@ def update_all_accounts(want_json=False):
         else:
             print("❌ No accounts found in ~/.codex/accounts/")
         return
-    
-    original_account = get_active_account()
+
+    auth_file = Path.home() / ".codex" / "auth.json"
+    original_auth_bytes = auth_file.read_bytes() if auth_file.exists() else None
+
     results = {}
     
     if not want_json:
@@ -254,9 +260,15 @@ def update_all_accounts(want_json=False):
             s = limits['secondary']['used_percent']
             print(f"✓ daily {p:.0f}% / weekly {s:.0f}%")
     
-    # Restore original account
-    if original_account:
-        switch_account(original_account)
+    # Restore original auth.json exactly (best-effort)
+    try:
+        if original_auth_bytes is None:
+            if auth_file.exists():
+                auth_file.unlink()
+        else:
+            auth_file.write_bytes(original_auth_bytes)
+    except Exception:
+        pass
     
     # Save to /tmp
     output_file = Path("/tmp/codex-quota-all.json")
