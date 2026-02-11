@@ -1,6 +1,6 @@
 ---
 name: codex-quota
-version: 1.1.1
+version: 1.1.2
 description: >
   Check OpenAI Codex CLI rate limit status (daily/weekly quotas) using local
   session logs. Portable Python script. Reads ~/.codex/sessions/ for quota data
