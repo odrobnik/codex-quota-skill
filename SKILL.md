@@ -1,6 +1,15 @@
 ---
 name: codex-quota
-description: Check OpenAI Codex CLI rate limit status (daily/weekly quotas) using local session logs. Portable Python script.
+version: 1.1.1
+description: >
+  Check OpenAI Codex CLI rate limit status (daily/weekly quotas) using local
+  session logs. Portable Python script. Reads ~/.codex/sessions/ for quota data
+  and ~/.codex/accounts/*.json when using --all. Account switching requires
+  explicit --yes flag.
+metadata:
+  openclaw:
+    requires:
+      bins: ["python3"]
 ---
 
 # Skill: codex-quota
@@ -22,7 +31,7 @@ codex-quota
 ```bash
 codex-quota              # Show current quota (cached from latest session)
 codex-quota --fresh      # Ping Codex first for live data
-codex-quota --all        # Update all accounts, save to /tmp/codex-quota-all.json
+codex-quota --all --yes  # Update all accounts, save to /tmp/codex-quota-all.json
 codex-quota --json       # Output as JSON
 codex-quota --help       # Show help
 ```

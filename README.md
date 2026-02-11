@@ -2,6 +2,14 @@
 
 A portable Python tool to check OpenAI Codex rate limit status.
 
+Reads `~/.codex/sessions/` for quota data and `~/.codex/accounts/*.json` when using `--all`.
+
+## ClawHub
+
+Published on [ClawHub](https://clawhub.com/skills/codex-quota).
+
+See [SKILL.md](SKILL.md) for full documentation.
+
 ## Installation
 
 ```bash
@@ -14,6 +22,7 @@ chmod +x ~/bin/codex-quota
 ```bash
 codex-quota              # Cached data from latest session
 codex-quota --fresh      # Ping Codex for live data
+codex-quota --all --yes  # Update all accounts (switches between them)
 codex-quota --json       # JSON output
 ```
 

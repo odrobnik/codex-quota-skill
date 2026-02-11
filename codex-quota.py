@@ -297,6 +297,7 @@ Shows OpenAI Codex rate limit status from session files.
 Options:
   --fresh, -f    Ping Codex to get fresh rate limit data
   --all, -a      Update all accounts, save to /tmp/codex-quota-all.json
+  --yes, -y      Confirm account switching (required with --all)
   --json, -j     Output as JSON
   --help, -h     Show this help
 
@@ -306,8 +307,13 @@ By default, uses the most recent session file (cached data).""")
     want_fresh = "--fresh" in args or "-f" in args
     want_json = "--json" in args or "-j" in args
     want_all = "--all" in args or "-a" in args
+    want_yes = "--yes" in args or "-y" in args
     
     if want_all:
+        if not want_yes:
+            print("⚠️  --all switches between Codex accounts to check each one's quota.")
+            print("   Pass --yes to confirm: codex-quota --all --yes")
+            sys.exit(1)
         update_all_accounts(want_json)
         return
     
