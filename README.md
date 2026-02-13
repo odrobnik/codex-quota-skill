@@ -52,6 +52,12 @@ codex-quota --json       # JSON output
 
 Reads rate limit data from Codex session files (`~/.codex/sessions/`). Every Codex API response includes rate limit headers, which get logged as `token_count` events in the session JSONL files.
 
+## Documentation
+
+- [SKILL.md](SKILL.md) — agent-facing reference (commands, behavior, limitations)
+- [SETUP.md](SETUP.md) — prerequisites, configuration, and setup instructions
+- [ClawHub](https://www.clawhub.com/skills/codex-quota) — install via ClawHub registry
+
 ## License
 
 MIT
