@@ -1,6 +1,6 @@
 ---
 name: codex-quota
-version: 1.2.0
+version: 1.2.1
 homepage: https://github.com/odrobnik/codex-quota-skill
 description: >
   Check OpenAI Codex CLI rate limit status (daily/weekly quotas) using local
